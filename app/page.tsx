@@ -1,11 +1,14 @@
 'use client';
 
-// THIS IS THE MISSING LINE! You must import 'dynamic' to use it.
 import dynamic from 'next/dynamic';
 
-const Spline = dynamic(() => import('@splinetool/react-spline').then((mod) => mod.default), {
-  ssr: false,
-});
+// This is the complete and correct dynamic import, combining all previous fixes.
+const Spline = dynamic(
+  () => import('@splinetool/react-spline').then((mod) => mod.default),
+  {
+    ssr: false, // This ensures it only runs on the client
+  }
+);
 
 export default function Home() {
   return (
